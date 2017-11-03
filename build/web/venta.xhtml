@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c ="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./master.xhtml">
+
+            <ui:define name="content">
+                <section class="content-header">
+
+                    <h1>
+                        Proceso de Venta
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Venta</li>
+                    </ol>
+                </section>
+                <section class="content">
+                    <!-- /.modal -->
+                    <div class="modal modal-primary fade" id="modal-primary">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">x</span></button>
+                                    <h4 class="modal-title">Datos de Cliente</h4>
+                                </div>
+                                <h:form class="form-horizontal">
+                                    <div class="modal-body" style="background-color: white !important">
+
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nombre</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="Ingrese..."  value="#{manejadorVenta.nombref}" ></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nit</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="Ingrese..."  value="#{manejadorVenta.nitf}" ></h:inputText>
+                                                </div>
+                                            </div>                               
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                                        <h:commandButton value="Guardar" class="btn btn-outline" action="#{manejadorVenta.DatosCliente()}"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="box">
+                                <div class="box-header">
+                                    <h:form>
+                                        <div class="col-sm-2">
+                                            <br/>
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-primary">
+                                            Datos Cliente
+                                        </button>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h:outputLabel value="Codigo:"></h:outputLabel>
+                                        <h:inputText class="form-control" id="commentInput" a:autofocus="true" value="#{manejadorVenta.codigo}" onkeypress="if (event.keyCode == 13)">
+                                        </h:inputText>
+                                        </div>
+                                        <h:commandButton value="Guardar Cambios" class="btn btn-outline" action="#{manejadorVenta.AddRegistro()}">
+                                            <f:ajax render=":form1:example1" />
+                                        </h:commandButton>
+                                    </h:form>
+                                </div>
+                                <h:form id="form_1">
+                                    <div class="box-body">
+
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Codigo</th>
+                                                    <th>Producto</th>
+                                                    <th>Precio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <ui:repeat value="${listaventas}" var="v">
+                                                    <tr>
+                                                        <td>${v.getProducto()}</td>
+                                                        <td>${v.getNombre()}</td>
+                                                        <td>${v.getPrecio()}</td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                        <div class="box-header">
+                                            <div class="col-sm-3">
+                                                <h:outputLabel value="Total:"></h:outputLabel>
+                                                <h:inputText id="lt" class="form-control" readonly="true" value="TOTAL A PAGAR: Q. ${tt}" ></h:inputText>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:outputLabel value="Efectivo:"></h:outputLabel>
+                                                <h:inputText class="form-control" value="#{manejadorVenta.efectivo}" ></h:inputText>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:outputLabel value="Cambio:"></h:outputLabel>
+                                                <h:inputText class="form-control" readonly="true" value="CAMBIO: Q. ${cambio}" ></h:inputText>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <br/>
+                                                <h:commandButton value="Realizar Venta" class="btn btn-success" action="#{manejadorVenta.Vuelto()}" ></h:commandButton>
+                                            </div>
+                                        </div>
+                                        <div class="box-header">
+                                            <br/>
+                                            <div class="col-sm-5">
+                                                <h:outputLabel value="Nombre:"></h:outputLabel>
+                                                <h:inputText id="t" class="form-control" readonly="true" value="${nombrefac}" ></h:inputText>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h:outputLabel value="NIT:"></h:outputLabel>
+                                                <h:inputText class="form-control" readonly="true" value="${nitfac}" ></h:inputText>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <br/>
+                                                <h:commandButton value="Guardar Venta"  class="btn btn-primary" action="#{manejadorVenta.Save()}" ></h:commandButton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

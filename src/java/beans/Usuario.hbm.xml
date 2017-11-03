@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="beans.Usuario" table="USUARIO">
+		<id name="idUser" type="java.lang.Integer">
+			<column name="idUser"></column>
+                        <generator class="increment"/>
+		</id>
+                <property name="nick" type="java.lang.String">
+			<column name="nick"></column>
+		</property>
+		<property name="nombre" type="java.lang.String">
+			<column name="nombre"></column>
+		</property>
+		<property name="apellido" type="java.lang.String">
+			<column name="apellido"></column>
+		</property>
+		<property name="contrasena" type="java.lang.String">
+			<column name="contrasena"></column>
+		</property>	
+	</class>
+</hibernate-mapping>
+

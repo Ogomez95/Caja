@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+    <managed-bean>
+        <managed-bean-name>ManejadorUsuario</managed-bean-name>
+        <managed-bean-class>manager.ManejadorUsuario</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>manejadorProducto</managed-bean-name>
+        <managed-bean-class>manager.ManejadorProducto</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <description>Login</description>
+        <managed-bean-name>manejadorAcceso</managed-bean-name>
+        <managed-bean-class>manager.ManejadorAcceso</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <description>Control de ventas</description>
+        <managed-bean-name>manejadorVenta</managed-bean-name>
+        <managed-bean-class>manager.ManejadorVenta</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <description>Detalle Factura</description>
+        <managed-bean-name>manejadorDetalle</managed-bean-name>
+        <managed-bean-class>manager.ManejadorDetalle</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+</faces-config>

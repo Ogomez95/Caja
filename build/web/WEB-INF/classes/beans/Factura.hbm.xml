@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="beans.Factura" table="FACTURA">
+		<id name="idFac" type="java.lang.Integer">
+			<column name="idFac"></column>
+			<generator class="increment"/>
+		</id>
+		<property name="serie" type="java.lang.String">
+			<column name="serie"></column>
+		</property>
+                <property name="nombre" type="java.lang.String">
+			<column name="nombre"></column>
+		</property>
+		<property name="nit" type="java.lang.String">
+			<column name="nit"></column>
+		</property>
+		<property name="cantidad" type="java.lang.Integer">
+			<column name="cantidad"></column>
+		</property>
+                <property name="total" type="java.lang.Double">
+			<column name="total"></column>
+		</property>
+                <property name="efectivo" type="java.lang.Double">
+			<column name="efectivo"></column>
+		</property>
+                <property name="cambio" type="java.lang.Double">
+			<column name="cambio"></column>
+		</property>
+	</class>
+</hibernate-mapping>

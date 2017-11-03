@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="beans.Producto" table="PRODUCTO">
+		<id name="idPro" type="java.lang.Integer">
+			<column name="idPro"></column>
+			<generator class="increment"/>
+		</id>
+                <property name="codigo" type="java.lang.String">
+			<column name="codigo"></column>
+		</property>
+		<property name="nombre" type="java.lang.String">
+			<column name="nombre"></column>
+		</property>
+		<property name="precio" type="java.lang.Double">
+			<column name="precio"></column>
+		</property>
+                <property name="unidad" type="java.lang.String">
+			<column name="unidad"></column>
+		</property>
+		<property name="imagen" type="java.lang.String">
+			<column name="imagen"></column>
+		</property>
+                <property name="barra" type="java.lang.String">
+			<column name="barra"></column>
+		</property>
+	</class>
+</hibernate-mapping>

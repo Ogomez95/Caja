@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+	    <property name="hibernate.connection.url">jdbc:sqlserver://localhost\\DESKTOP-N064H91\\SQLEXPRESS:1433; databaseName=Caja;</property>
+	    <property name="hibernate.connection.username">Developer</property>
+	    <property name="hibernate.connection.password">Dev123</property>
+	    <property name="hibernate.connection.pool_size">1</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+		
+
+	    <property name="show_sql">true</property>
+	    <property name="hibernate.connection.charSet">utf-8</property> 
+	    
+		<property name="current_session_context_class">thread</property>
+		
+      	<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+      	<property name="transaction.factory_class">
+             org.hibernate.transaction.JDBCTransactionFactory
+	    </property>
+	    <property name="hibernate.cache.provider_class">
+	             org.hibernate.cache.HashtableCacheProvider
+	    </property>
+	    
+		<mapping class="Usuario" package="beans" resource="beans/Usuario.hbm.xml"/> 
+                <mapping class="Producto" package="beans" resource="beans/Producto.hbm.xml"/> 
+                <mapping class="Factura" package="beans" resource="beans/Factura.hbm.xml"/> 
+                <mapping class="Detalle" package="beans" resource="beans/Detalle.hbm.xml"/> 
+                <mapping class="Satisfaccion" package="beans" resource="beans/Satisfaccion.hbm.xml"/> 
+		
+	</session-factory>
+</hibernate-configuration>

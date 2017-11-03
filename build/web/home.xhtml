@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="./master.xhtml">
+            <ui:define name="content">
+                <section class="content-header">
+                    <h1>
+                        Principal
+                        <small>Panel de control</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Principal</li>
+                    </ol>
+                </section>
+                <section class="content"> 
+                    <div class="row">
+                        <div class="col-lg-3 col-xs-6">
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>${nvendidos}</h3>
+
+                                    <p>Productos vendidos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-xs-6">
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>${ningresos}<sup style="font-size: 20px"></sup></h3>
+
+                                    <p>Ingreso en Quetzales.</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="#" class="small-box-footer"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-xs-6">
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>${nclientes}</h3>
+
+                                    <p>Usuarios atendidos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-person-add"></i>
+                                </div>
+                                <a href="#" class="small-box-footer"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-xs-6">
+                            <div class="small-box bg-red">
+                                <div class="inner">
+                                    <h3>${nivelsatis}%</h3>
+
+                                    <p>Satisfación</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer"></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Operación</h3>
+                                </div>
+                                <div class="box-body">
+                                    <a href="venta.xhtml" class="btn btn-block btn-primary btn-lg">
+                                        <i class="fa fa-play"></i> Iniciar venta
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-md-9">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Productos más vendidos</h3>
+                                </div>
+                                <div class="box-body">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Producto</th>
+                                            <th>Progress</th>
+                                            <th style="width: 40px">Label</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Manzana importada</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-green">90%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Jamon de pavo</td>
+                                            <td>
+                                                <div class="progress progress-xs progress-striped active">
+                                                    <div class="progress-bar progress-bar-primary" style="width: 70%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-light-blue">70%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Coca cola 2Lts</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 40%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-yellow">40%</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Aceite olmeca</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 25%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-red">25%</span></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td>5.</td>
+                                            <td>Pan bimbo</td>
+                                            <td>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 5%"></div>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-red">5%</span></td>
+                                        </tr>
+                                        
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Opciones</h3>
+                                </div>
+                                <div class="box-body">
+                                    <a class="btn btn-app">
+                                        <span class="badge bg-yellow">3</span>
+                                        <i class="fa fa-bullhorn"></i> Notifications
+                                    </a>
+                                    <a class="btn btn-app" href="product.xhtml">
+                                        <span class="badge bg-green">${nProductos}</span>
+                                        <i class="fa fa-barcode"></i> Products
+                                    </a>
+                                    <a class="btn btn-app" href="user.xhtml">
+                                        <span class="badge bg-purple">${nPersonas}</span>
+                                        <i class="fa fa-users"></i> Users
+                                    </a>
+                                    <a class="btn btn-app">
+                                        <span class="badge bg-teal">5</span>
+                                        <i class="fa fa-inbox"></i> Orders
+                                    </a>
+                                    <a class="btn btn-app">
+                                        <span class="badge bg-aqua">3</span>
+                                        <i class="fa fa-envelope"></i> Inbox
+                                    </a>
+                                    <a class="btn btn-app">
+                                        <span class="badge bg-red">21</span>
+                                        <i class="fa fa-heart-o"></i> Likes
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

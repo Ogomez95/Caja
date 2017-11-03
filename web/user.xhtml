@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c ="http://xmlns.jcp.org/jsp/jstl/core">
+    <body>
+        <ui:composition template="./master.xhtml">
+            <ui:define name="content">
+                <section class="content-header">
+
+                    <h1>
+                        Catálogo de Usuarios
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Usuarios</li>
+                    </ol>
+                </section>
+                <section class="content">
+                    <div class="modal modal-primary fade" id="modal-primary">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">x</span></button>
+                                    <h4 class="modal-title">Agregar Usuario</h4>
+                                </div>
+                                <h:form class="form-horizontal">
+                                    <div class="modal-body" style="background-color: white !important">
+
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nick</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="Ingrese..."  value="#{manejadorUsuario.usuario.nick}" ></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nombre</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="Ingrese..."  value="#{manejadorUsuario.usuario.nombre}" ></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Apellido</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="Ingrese..."  value="#{manejadorUsuario.usuario.apellido}" ></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label" style="color: black">Contraseña</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputSecret class="form-control" a:placeholder="Ingrese..."  value="#{manejadorUsuario.usuario.contrasena}"></h:inputSecret>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                                        <h:commandButton value="Guardar" class="btn btn-outline" action="#{manejadorUsuario.AddUsuario()}"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <div class="modal modal-primary fade" id="modal-edit">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">x</span></button>
+                                    <h4 class="modal-title">Editar Usuario</h4>
+                                </div>
+                                <h:form class="form-horizontal">
+                                    <ui:repeat value="${userupdate}" var="usrup">
+                                        <div class="modal-body" style="background-color: white !important">
+
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nick</label>
+
+                                                    <div class="col-sm-9">
+                                                        <h:inputText class="form-control" a:placeholder="Ingrese..."  value="${usr.getNick()}" ></h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nombre</label>
+
+                                                    <div class="col-sm-9">
+                                                        <h:inputText class="form-control" a:placeholder="Ingrese..."  value="${usr.getNombre()}" ></h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Apellido</label>
+
+                                                    <div class="col-sm-9">
+                                                        <h:inputText class="form-control" a:placeholder="Ingrese..."  value="${usr.getApellido}" ></h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-2 control-label" style="color: black">Contraseña</label>
+
+                                                    <div class="col-sm-9">
+                                                        <h:inputSecret class="form-control" a:placeholder="Ingrese..."  value="${usr.getContasena()}"></h:inputSecret>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </ui:repeat>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                                        <h:commandButton value="Guardar Cambios" class="btn btn-outline" action="#{manejadorUsuario.EditUsuario()}"></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+                    <!-- /.modal -->
+                    <div class="row">
+                        <h:form class="form-horizontal">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-primary">
+                                            Crear Usuario
+                                        </button>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>User</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido</th>
+                                                    <th>Contraseña</th>
+                                                    <th>Editar</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <ui:repeat value="${listaPersonas}" var="usr">
+                                                    <tr>
+                                                        <td>${usr.getNick()}</td>
+                                                        <td>${usr.getNombre()}</td>
+                                                        <td>${usr.getApellido()}</td>
+                                                        <td>${usr.getContrasena()}</td>
+
+                                                        <td>
+                                                            <span class="btn-group" data-toggle="modal" data-target="#modal-edit">
+                                                                <h:commandButton type="button" value="Editar" class="btn btn-warning" 
+                                                                                 action="#{manejadorUsuario.SearchUsuario()}">
+                                                                    <f:param name="id" value="${usr.getIdUser()}"></f:param>
+                                                                    <f:ajax execute="@form" render="example1" />
+
+                                                                </h:commandButton>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <h:commandButton value="Eliminar" class="btn btn-danger" action="#{manejadorUsuario.deleteUsuario()}">
+                                                                <f:param name="id" value="${usr.getIdUser()}"></f:param>
+                                                            </h:commandButton>
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </h:form>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

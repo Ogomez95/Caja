@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c ="http://xmlns.jcp.org/jsp/jstl/core">
+    <body>
+        <ui:composition template="./master.xhtml">
+            <ui:define name="content">
+                <section class="content-header">
+
+                    <h1>
+                        Catálogo de Productos
+                    </h1>
+
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Usuarios</li>
+                    </ol>
+                </section>
+                <section class="content">
+                    <div class="modal modal-primary fade" id="modal-primary">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">x</span></button>
+                                    <h4 class="modal-title">Agregar Producto</h4>
+                                </div>
+                                <h:form class="form-horizontal" enctype="multipart/form-data">
+                                    <div class="modal-body" style="background-color: white !important">
+
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Imagen</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputFile class="form-control" a:placeholder="Ingrese..."  value="#{manejadorProducto.file1}" ></h:inputFile>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Nombre</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="Ingrese..."  value="#{manejadorProducto.producto.nombre}" ></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Precio</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:inputText class="form-control" a:placeholder="0.00"  value="#{manejadorProducto.producto.precio}" ></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword3" class="col-sm-2 control-label" style="color: black">Unidad</label>
+
+                                                <div class="col-sm-9">
+                                                    <h:selectOneMenu class="form-control" value = "#{manejadorProducto.producto.unidad}"> 
+                                                        <f:selectItem itemValue = "Unidad" itemLabel = "Unidad" /> 
+                                                        <f:selectItem itemValue = "Libra" itemLabel = "Libra" /> 
+                                                    </h:selectOneMenu> 	
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Codigo</label>
+
+                                                <div class="col-sm-5">
+                                                    <h:inputText  onblur="$('#barcode').JsBarcode(this.value, {width: 1, height: 25});" class="form-control" a:placeholder="###"  value="#{manejadorProducto.producto.codigo}" ></h:inputText>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <img id="barcode" alt='imagen'/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-2 control-label" style="color: black">Barra</label>
+                                                <div class="col-sm-9">
+                                                    <h:inputFile class="form-control" id="fileUpload" a:placeholder="Ingrese..."  value="#{manejadorProducto.file2}" ></h:inputFile>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                                        <h:commandButton value="Guardar" class="btn btn-outline" action="#{manejadorProducto.AddProduct()}">
+                                            <f:ajax execute="@all" render="@form"/>
+                                        </h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-primary">
+                                        Crear Producto
+                                    </button>
+                                    <!--                                    <h:inputText id="commentInput" 
+                                                                        onkeypress="if (event.keyCode == 13) { alert(this.value); return false; }"/>-->
+                                </div>
+                                <div class="box-body">
+                                    <ui:repeat value="${listaProductos}" var="pros">
+                                    <div class="col-lg-3 col-xs-6">
+                                        <div class="small-box bg-light-blue">
+                                            <div class="inner">
+                                                <h4>Q. ${pros.getPrecio()} ${pros.getUnidad()}</h4>
+                                                <p>${pros.getNombre()}</p>
+                                                
+                                                <h:graphicImage url="products/${pros.getBarra()}"></h:graphicImage>
+                                            </div>
+                                            <div class="icon">
+                                                <h:graphicImage width="90px" url="products/${pros.getImagen()}"></h:graphicImage>
+                                            </div>
+                                            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                    </ui:repeat>
+                                </div>
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
